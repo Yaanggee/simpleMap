@@ -101,8 +101,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         print("\(viewTitle) \(viewSubTitle)")
         
-        let ac = UIAlertController(title: viewTitle, message: viewSubTitle, preferredStyle: .alert)
+        let ac = UIAlertController(title: viewTitle, message: viewSubTitle, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        ac.addAction(UIAlertAction(title: "DELETE", style: .destructive, handler: nil))
+        
         present(ac, animated: true, completion: nil)
     }
     
