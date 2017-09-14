@@ -28,6 +28,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
         anno01.title = "DIT 동의과학대학교"
         anno01.subtitle = "나의 꿈이 자라는 곳"
         
+        
+        
+        
         // 부산시민공원 35.168444, 129.057832
         let anno02 = MKPointAnnotation()
         anno02.coordinate.latitude = 35.168444
@@ -69,44 +72,27 @@ class ViewController: UIViewController, MKMapViewDelegate {
             
             
             
-            
-            
-            let btn = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = btn
-            
-            
-            
-        } else {
+        }
+           else {
             annotationView?.annotation = annotation
         }
+        let btn = UIButton(type: .detailDisclosure)
+        annotationView?.rightCalloutAccessoryView = btn
         
-        //        let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-        //        leftIconView.image = UIImage(named:"bright-7.png" )
-        //        annotationView?.leftCalloutAccessoryView = leftIconView
-        //
-        //        let btn = UIButton(type: .detailDisclosure)
-        //        annotationView?.rightCalloutAccessoryView = btn
-        
+
         return annotationView
         
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        print("callout Accessory Tapped!")
-        
-        let viewAnno = view.annotation
-        let viewTitle: String = ((viewAnno?.title)!)!
-        let viewSubTitle: String = ((viewAnno?.subtitle)!)!
-        
-        print("\(viewTitle) \(viewSubTitle)")
-        
-        let ac = UIAlertController(title: viewTitle, message: viewSubTitle, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        ac.addAction(UIAlertAction(title: "DELETE", style: .destructive, handler: nil))
-        
-        present(ac, animated: true, completion: nil)
+    func seView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+
+        if control == view.rightCalloutAccessoryView {
+                        self.performSegue(withIdentifier: "GoDetailView", sender: self)
+        }
     }
+
     
+    
+
 }
 
